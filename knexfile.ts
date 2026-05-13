@@ -7,6 +7,7 @@ const connection = {
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE_NAME
 };
+
 const knexConfig = {
   development: {
     client: 'mysql2',
@@ -18,6 +19,18 @@ const knexConfig = {
     seeds: {
       directory: './database/seeds'
     }
+  },
+  production: {
+    client: 'mysql2',
+    connection: connection,
+    migrations: {
+      tableName: 'migrations',
+      directory: './database/migrations'
+    },
+    seeds: {
+      directory: './database/seeds'
+    }
   }
 };
+
 export default knexConfig;
